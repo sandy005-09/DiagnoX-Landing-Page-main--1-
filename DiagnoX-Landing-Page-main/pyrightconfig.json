@@ -1,0 +1,6 @@
+{
+  "analysis": {
+    "typeCheckingMode": "basic"
+  },
+  "include": ["src"]
+}
