@@ -11,9 +11,10 @@ import { XIcon } from './components/XIcon';
 import { ContactDialog } from './components/ContactDialog';
 import { FAQDialog } from './components/FAQDialog';
 import { FONTS } from './config/fonts';
+import { ProcessSteps } from './components/ProcessSteps';
 import svgPaths from './imports/svg-sppztv54cx';
-const imgMockupRemovebg1 = '/83cc5e54f935b3e722af1ce6b7f8180b5220a779.png';
-const imgCarWorkshopBg = '/0e3325f9d305dc65d43313e8420c46656d44acd9.png';
+import imgMockupRemovebg1 from './assets/83cc5e54f935b3e722af1ce6b7f8180b5220a779.png';
+import imgCarWorkshopBg from './assets/0e3325f9d305dc65d43313e8420c46656d44acd9.png';
 
 function HeroSection() {
   const { theme } = useTheme();
@@ -33,7 +34,7 @@ function HeroSection() {
   return (
     <section
       id="hero"
-      className={`relative h-[752px] w-full overflow-clip ${theme === 'dark'
+      className={`relative min-h-[900px] w-full ${theme === 'dark'
         ? 'bg-gradient-to-b from-[#0d0d0d] from-[73.676%] via-[#070d32] via-[102.02%] to-[#000d57] to-[113.83%]'
         : 'bg-gradient-to-b from-gray-50 via-blue-50 to-blue-100'
         }`}
@@ -89,21 +90,19 @@ function HeroSection() {
       {/* Text + Product */}
       <motion.div
         style={{ y }}
-        className="absolute left-[calc(50%-0.273px)] top-[72px] flex -translate-x-1/2 flex-col items-center pb-[264px] pt-0 px-0"
+        className="relative z-10 flex flex-col items-center pt-[120px] pb-[100px] px-6 text-center w-full"
       >
-        {/* Big Bold Text */}
-        <div className="mb-[-264px] flex h-[349px] flex-col items-center justify-between px-[20px] py-0 text-center">
-          <h1 className="sr-only">DiagnoX - Predictive Truck Fleet Intelligence</h1>
-          <div className="h-[302px] w-[1155px]">
+        <div className="flex flex-col items-center gap-8 w-full max-w-[1200px]">
+          <h1 className="flex flex-col gap-2">
             <AnimatedHeroText text="AI-Driven Truck Fleet Health" delay={0.3} />
             <AnimatedHeroText text="& Operations Intelligence" delay={0.7} />
-          </div>
+          </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className={`h-[54px] w-[551px] font-body-semibold text-[16px] leading-[1.3] tracking-normal ${theme === 'dark' ? '' : 'text-black'
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className={`w-full max-w-[800px] font-body-semibold text-[20px] leading-relaxed tracking-normal ${theme === 'dark' ? '' : 'text-gray-700'
               }`}
             style={theme === 'dark' ? {
               background: 'linear-gradient(135deg, #B8B8B8 0%, #E8E8E8 50%, #B8B8B8 100%)',
@@ -112,20 +111,20 @@ function HeroSection() {
               backgroundClip: 'text',
             } : {}}
           >
-            DiagnoX is redefining car health with AI-powered diagnostics that<br />
+            DiagnoX is redefining vehicle health with AI-powered diagnostics that<br className="hidden md:block" />
             predict, prevent, and perfect performance.
           </motion.p>
         </div>
 
-        {/* Product Image - Mockup-removebg 1 */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="relative mb-[-264px] flex items-center justify-center"
+          className="relative flex items-center justify-center mt-8"
           style={{
-            height: 'calc(1px * ((1780.75 * 0.008380573242902756) + (1186 * 0.9999648928642273)))',
-            width: 'calc(1px * ((1186 * 0.008380573242902756) + (1780.75 * 0.9999648928642273)))'
+            height: 'auto',
+            width: '100%',
+            maxWidth: '1200px'
           }}
         >
           <motion.div
@@ -194,14 +193,6 @@ function FeaturesSection() {
 function AboutUsSection() {
   const { theme } = useTheme();
 
-  const steps = [
-    'Plug In the Dongle',
-    'Instant App Sync',
-    'Cloud-Based Data Analysis',
-    'Get Your Vehicle Health Report',
-    'Stay Informed Anywhere, Anytime',
-  ];
-
   const benefits = [
     {
       title: 'Instant, Accurate Diagnostics',
@@ -222,11 +213,11 @@ function AboutUsSection() {
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden" style={{ height: '1504px' }}>
-      {/* First Part: How does DiagnoX work ? - 752px with silver background */}
+    <section id="about" className="relative overflow-hidden" style={{ minHeight: 'auto' }}>
+      {/* First Part: How does DiagnoX work ? */}
       <div
         className={`relative ${theme === 'dark' ? 'bg-[#000000]' : 'bg-gray-50'}`}
-        style={{ height: '752px' }}
+        style={{ paddingBottom: '120px' }}
       >
         {/* Floating Mockup Image */}
         <div
@@ -243,70 +234,10 @@ function AboutUsSection() {
           <div className="relative size-full">
             <img
               src={imgMockupRemovebg1}
-              alt=""
+              alt="DiagnoX mobile interface mockup showing vehicle health status"
               className="size-full object-contain"
               style={{ opacity: 0.15 }}
             />
-
-            {/* Subtle pulsing glow aura - both modes */}
-            <motion.div
-              className="absolute inset-0"
-              style={{
-                background: theme === 'dark'
-                  ? 'radial-gradient(circle at center, rgba(59, 130, 246, 0.08) 0%, rgba(147, 197, 253, 0.04) 30%, transparent 60%)'
-                  : 'radial-gradient(circle at center, rgba(59, 130, 246, 0.12) 0%, rgba(147, 197, 253, 0.06) 30%, transparent 60%)',
-                filter: 'blur(80px)',
-              }}
-              animate={{
-                opacity: [0.4, 0.7, 0.4],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
-
-            {/* Very subtle floating particles - only 4 - both modes */}
-            {Array.from({ length: 4 }, (_, i) => {
-              const angle = (i / 4) * 360;
-              const radius = 450;
-              return (
-                <motion.div
-                  key={i}
-                  className="absolute rounded-full"
-                  style={{
-                    width: '2px',
-                    height: '2px',
-                    background: theme === 'dark' ? '#6B93E8' : '#3B82F6',
-                    boxShadow: theme === 'dark'
-                      ? '0 0 4px rgba(107, 147, 232, 0.4)'
-                      : '0 0 4px rgba(59, 130, 246, 0.5)',
-                    left: '50%',
-                    top: '50%',
-                    opacity: theme === 'dark' ? 0.3 : 0.4,
-                  }}
-                  animate={{
-                    x: [
-                      Math.cos((angle * Math.PI) / 180) * radius,
-                      Math.cos(((angle + 180) * Math.PI) / 180) * radius,
-                      Math.cos((angle * Math.PI) / 180) * radius,
-                    ],
-                    y: [
-                      Math.sin((angle * Math.PI) / 180) * radius,
-                      Math.sin(((angle + 180) * Math.PI) / 180) * radius,
-                      Math.sin((angle * Math.PI) / 180) * radius,
-                    ],
-                  }}
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    delay: i * 2,
-                    ease: 'linear',
-                  }}
-                />
-              );
-            })}
           </div>
         </div>
 
@@ -319,37 +250,12 @@ function AboutUsSection() {
             transition={{ duration: 0.8 }}
             className="relative z-10"
           >
-            <h2 className={`mb-12 ${FONTS.subheading} text-[108px] leading-[1.04] tracking-[-3.786px] ${theme === 'dark' ? 'text-white/90' : 'text-black'
+            <h2 className={`mb-24 ${FONTS.subheading} text-[108px] leading-[1.04] tracking-[-3.786px] ${theme === 'dark' ? 'text-white/90' : 'text-black'
               }`}>
               How does <br />DiagnoX work ?
             </h2>
 
-            <div className="space-y-6">
-              {steps.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group flex items-center gap-6 cursor-pointer"
-                >
-                  {/* Simple bullet circle that matches text shade */}
-                  <div
-                    className={`size-6 shrink-0 rounded-full transition-all duration-300 ${theme === 'dark'
-                      ? 'bg-white/60 group-hover:bg-white'
-                      : 'bg-black/60 group-hover:bg-black'
-                      }`}
-                  />
-
-                  {/* Text with subtle grow */}
-                  <p className={`${FONTS.body} text-[24px] leading-[1.375] transition-all duration-300 group-hover:scale-105 origin-left ${theme === 'dark' ? 'text-white/60 group-hover:text-white' : 'text-black/60 group-hover:text-black'
-                    }`}>
-                    {step}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+            <ProcessSteps />
           </motion.div>
         </div>
       </div>

@@ -3,8 +3,8 @@ import { Moon, Sun } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { Button } from './ui/button';
 import { useState, useEffect } from 'react';
-const lightModeLogo = '/c6e878ec99d5a6a46f2ef96f6eec5542faa878ff.png';
-const darkModeLogo = '/6d2fa2cbe0d69440a2e9d4951b4dbf4fea83e7fd.png';
+import lightModeLogo from '../assets/c6e878ec99d5a6a46f2ef96f6eec5542faa878ff.png';
+import darkModeLogo from '../assets/6d2fa2cbe0d69440a2e9d4951b4dbf4fea83e7fd.png';
 
 export function NavBar() {
   const { theme, toggleTheme } = useTheme();
@@ -120,11 +120,10 @@ export function NavBar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="/blog"
-            className={`font-body-semibold text-[16px] leading-[1.45] cursor-pointer transition-colors ${
-              theme === 'dark'
+            className={`font-body-semibold text-[16px] leading-[1.45] cursor-pointer transition-colors ${theme === 'dark'
                 ? 'text-[#C0C0C0] hover:text-[#ffffff]'
                 : 'text-gray-600 hover:text-gray-900'
-            }`}
+              }`}
           >
             Blog
           </motion.a>
