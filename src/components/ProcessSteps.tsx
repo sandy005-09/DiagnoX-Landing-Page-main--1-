@@ -35,53 +35,49 @@ export function ProcessSteps() {
     const { theme } = useTheme();
 
     return (
-        <div className="w-full max-w-6xl mx-auto py-12 px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="w-full max-w-4xl mx-auto py-12 px-6">
+            <div className="flex flex-col gap-6">
                 {steps.map((step, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className={`group relative p-8 rounded-3xl transition-all duration-500 ${theme === 'dark'
-                                ? 'bg-[#0f0f0f] border border-white/5 hover:border-white/20 hover:bg-[#151515]'
-                                : 'bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-100'
+                        className={`group relative flex flex-col md:flex-row items-start md:items-center gap-6 p-8 rounded-2xl transition-all duration-300 ${theme === 'dark'
+                                ? 'bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10'
+                                : 'bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-lg'
                             }`}
-                        style={{
-                            boxShadow: theme === 'dark'
-                                ? '0 10px 40px rgba(0,0,0,0.5)'
-                                : '0 10px 40px rgba(0,0,0,0.03)'
-                        }}
                     >
-                        {/* Step Number Badge */}
-                        <div className={`mb-6 flex items-center justify-between`}>
-                            <div className={`flex items-center justify-center size-14 rounded-2xl transition-transform duration-500 group-hover:scale-110 ${theme === 'dark'
-                                    ? 'bg-white/5 text-white border border-white/10'
-                                    : 'bg-blue-50 text-blue-600 border border-blue-100'
-                                }`}>
-                                <step.icon size={24} />
-                            </div>
-                            <span className={`text-[48px] font-branding leading-none opacity-10 ${theme === 'dark' ? 'text-white' : 'text-black'
+                        {/* Number & Icon Wrapper */}
+                        <div className="flex items-center gap-6 shrink-0">
+                            <span className={`text-sm font-bold tracking-widest ${theme === 'dark' ? 'text-white/20' : 'text-blue-600/30'
                                 }`}>
                                 0{index + 1}
                             </span>
+                            <div className={`flex items-center justify-center size-12 rounded-xl border ${theme === 'dark'
+                                    ? 'bg-white/5 border-white/10 text-white'
+                                    : 'bg-white border-blue-100 text-blue-600 shadow-sm'
+                                }`}>
+                                <step.icon size={20} />
+                            </div>
                         </div>
 
-                        <div className="space-y-4">
-                            <h3 className={`${FONTS.branding} text-2xl md:text-3xl ${theme === 'dark' ? 'text-white/90' : 'text-gray-900'
-                                } leading-tight`}>
+                        {/* Divider Line (Mobile: hidden, Tablet+: shown) */}
+                        <div className={`hidden md:block h-12 w-[1px] ${theme === 'dark' ? 'bg-white/10' : 'bg-gray-200'
+                            }`} />
+
+                        {/* Text Content */}
+                        <div className="flex-1 text-left">
+                            <h3 className={`${FONTS.branding} text-2xl mb-2 ${theme === 'dark' ? 'text-white/90' : 'text-gray-900'
+                                }`}>
                                 {step.title}
                             </h3>
-                            <p className={`${FONTS.body} text-[15px] md:text-[16px] leading-relaxed ${theme === 'dark' ? 'text-white/50' : 'text-gray-500'
+                            <p className={`${FONTS.body} text-[15px] leading-relaxed ${theme === 'dark' ? 'text-white/40' : 'text-gray-500'
                                 }`}>
                                 {step.description}
                             </p>
                         </div>
-
-                        {/* Professional Accent Bar */}
-                        <div className={`absolute bottom-0 left-8 right-8 h-[2px] rounded-t-full transition-all duration-500 opacity-0 group-hover:opacity-100 ${theme === 'dark' ? 'bg-blue-500/50' : 'bg-blue-600/30'
-                            }`} />
                     </motion.div>
                 ))}
             </div>

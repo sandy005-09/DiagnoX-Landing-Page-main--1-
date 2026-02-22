@@ -231,49 +231,26 @@ function AboutUsSection() {
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden" style={{ minHeight: 'auto' }}>
+    <section id="about" className="relative overflow-hidden w-full">
       {/* First Part: How does DiagnoX work ? */}
       <div
-        className={`relative ${theme === 'dark' ? 'bg-[#000000]' : 'bg-gray-50'}`}
-        style={{ paddingBottom: '120px' }}
+        className={`relative w-full ${theme === 'dark' ? 'bg-[#000000]' : 'bg-gray-50'}`}
       >
-        {/* Floating Mockup Image */}
-        <div
-          className="absolute pointer-events-none z-0"
-          style={{
-            right: '-592px',
-            top: '-560px',
-            width: '1926.58px',
-            height: '1283.13px',
-            transform: 'rotate(48.99deg)',
-            transformOrigin: 'center center',
-          }}
-        >
-          <div className="relative size-full">
-            <img
-              src={imgMockupRemovebg1}
-              alt="DiagnoX mobile interface mockup showing vehicle health status"
-              className="size-full object-contain"
-              style={{ opacity: 0.15 }}
-            />
-          </div>
-        </div>
 
-        <div className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mx-auto max-w-7xl px-6 py-32 flex flex-col items-center text-center">
           {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative z-10 w-full"
+            className="relative z-10 w-full flex flex-col items-center"
           >
-            <h2 className={`mb-16 ${FONTS.subheading} text-[72px] md:text-[108px] leading-[1.04] tracking-[-3.786px] ${theme === 'dark' ? 'text-white/90' : 'text-black'
-              }`}>
-              How does <br />DiagnoX work?
+            <h2 className={`${FONTS.subheading} text-[48px] sm:text-[64px] md:text-[80px] lg:text-[100px] leading-[1.1] tracking-tight mb-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+              How does DiagnoX work?
             </h2>
 
-            <div className="mt-8">
+            <div className="w-full">
               <ProcessSteps />
             </div>
           </motion.div>
