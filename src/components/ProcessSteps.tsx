@@ -35,72 +35,56 @@ export function ProcessSteps() {
     const { theme } = useTheme();
 
     return (
-        <div className="relative w-full max-w-4xl mx-auto py-12">
-            {/* Central Line */}
-            <div
-                className={`absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 ${theme === 'dark' ? 'bg-white/10' : 'bg-gray-200'
-                    }`}
-            />
-
-            <div className="space-y-24">
+        <div className="w-full max-w-6xl mx-auto py-12 px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {steps.map((step, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: '-100px' }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className={`relative flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className={`group relative p-8 rounded-3xl transition-all duration-500 ${theme === 'dark'
+                                ? 'bg-[#0f0f0f] border border-white/5 hover:border-white/20 hover:bg-[#151515]'
+                                : 'bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-100'
                             }`}
+                        style={{
+                            boxShadow: theme === 'dark'
+                                ? '0 10px 40px rgba(0,0,0,0.5)'
+                                : '0 10px 40px rgba(0,0,0,0.03)'
+                        }}
                     >
-                        {/* Step Number Dot */}
-                        <div
-                            className={`absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center size-12 rounded-full z-20 transition-all duration-300 ${theme === 'dark'
-                                    ? 'bg-black border-2 border-white/20 text-white'
-                                    : 'bg-white border-2 border-gray-200 text-black'
-                                }`}
-                            style={{
-                                boxShadow: theme === 'dark'
-                                    ? '0 0 20px rgba(255, 255, 255, 0.1)'
-                                    : '0 0 20px rgba(0, 0, 0, 0.05)'
-                            }}
-                        >
-                            <step.icon size={20} className={theme === 'dark' ? 'text-white' : 'text-blue-600'} />
+                        {/* Step Number Badge */}
+                        <div className={`mb-6 flex items-center justify-between`}>
+                            <div className={`flex items-center justify-center size-14 rounded-2xl transition-transform duration-500 group-hover:scale-110 ${theme === 'dark'
+                                    ? 'bg-white/5 text-white border border-white/10'
+                                    : 'bg-blue-50 text-blue-600 border border-blue-100'
+                                }`}>
+                                <step.icon size={24} />
+                            </div>
+                            <span className={`text-[48px] font-branding leading-none opacity-10 ${theme === 'dark' ? 'text-white' : 'text-black'
+                                }`}>
+                                0{index + 1}
+                            </span>
                         </div>
 
-                        {/* Content Card */}
-                        <div className={`w-full md:w-[45%] pl-20 md:pl-0 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'
-                            }`}>
-                            <motion.div
-                                whileHover={{ scale: 1.02 }}
-                                className={`p-6 rounded-2xl transition-all duration-300 ${theme === 'dark'
-                                        ? 'bg-white/5 border border-white/10 hover:border-white/20'
-                                        : 'bg-white border border-gray-100 shadow-sm hover:shadow-md'
-                                    }`}
-                            >
-                                <span className={`inline-block mb-2 text-sm font-bold tracking-wider uppercase ${theme === 'dark' ? 'text-white/40' : 'text-blue-600/60'
-                                    }`}>
-                                    Step 0{index + 1}
-                                </span>
-                                <h3 className={`${FONTS.subheading} text-2xl mb-3 ${theme === 'dark' ? 'text-white' : 'text-gray-900'
-                                    }`}>
-                                    {step.title}
-                                </h3>
-                                <p className={`${FONTS.body} text-base leading-relaxed ${theme === 'dark' ? 'text-white/60' : 'text-gray-600'
-                                    }`}>
-                                    {step.description}
-                                </p>
-                            </motion.div>
+                        <div className="space-y-4">
+                            <h3 className={`${FONTS.branding} text-2xl md:text-3xl ${theme === 'dark' ? 'text-white/90' : 'text-gray-900'
+                                } leading-tight`}>
+                                {step.title}
+                            </h3>
+                            <p className={`${FONTS.body} text-[15px] md:text-[16px] leading-relaxed ${theme === 'dark' ? 'text-white/50' : 'text-gray-500'
+                                }`}>
+                                {step.description}
+                            </p>
                         </div>
+
+                        {/* Professional Accent Bar */}
+                        <div className={`absolute bottom-0 left-8 right-8 h-[2px] rounded-t-full transition-all duration-500 opacity-0 group-hover:opacity-100 ${theme === 'dark' ? 'bg-blue-500/50' : 'bg-blue-600/30'
+                            }`} />
                     </motion.div>
                 ))}
             </div>
-
-            {/* Pulsing end point */}
-            <div
-                className={`absolute left-8 md:left-1/2 bottom-0 -translate-x-1/2 size-4 rounded-full ${theme === 'dark' ? 'bg-white/20' : 'bg-gray-300'
-                    }`}
-            />
         </div>
     );
 }

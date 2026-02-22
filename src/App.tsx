@@ -92,8 +92,8 @@ function HeroSection() {
         style={{ y }}
         className="relative z-10 flex flex-col items-center pt-[120px] pb-[100px] px-6 text-center w-full"
       >
-        <div className="flex flex-col items-center gap-8 w-full max-w-[1200px]">
-          <h1 className="flex flex-col gap-2">
+        <div className="flex flex-col items-center gap-12 w-full max-w-[1200px]">
+          <h1 className="flex flex-col gap-0 md:gap-2">
             <AnimatedHeroText text="AI-Driven Truck Fleet Health" delay={0.3} />
             <AnimatedHeroText text="& Operations Intelligence" delay={0.7} />
           </h1>
@@ -102,7 +102,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className={`w-full max-w-[800px] font-body-semibold text-[20px] leading-relaxed tracking-normal ${theme === 'dark' ? '' : 'text-gray-700'
+            className={`w-full max-w-[900px] font-body text-[18px] md:text-[22px] leading-relaxed tracking-wide ${theme === 'dark' ? 'text-white/80' : 'text-gray-700'
               }`}
             style={theme === 'dark' ? {
               background: 'linear-gradient(135deg, #B8B8B8 0%, #E8E8E8 50%, #B8B8B8 100%)',
@@ -111,8 +111,7 @@ function HeroSection() {
               backgroundClip: 'text',
             } : {}}
           >
-            DiagnoX is redefining vehicle health with AI-powered diagnostics that<br className="hidden md:block" />
-            predict, prevent, and perfect performance.
+            DiagnoX is redefining vehicle health with AI-powered diagnostics that predict, prevent, and perfect performance.
           </motion.p>
         </div>
 
@@ -267,14 +266,16 @@ function AboutUsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative z-10"
+            className="relative z-10 w-full"
           >
-            <h2 className={`mb-12 ${FONTS.subheading} text-[108px] leading-[1.04] tracking-[-3.786px] ${theme === 'dark' ? 'text-white/90' : 'text-black'
+            <h2 className={`mb-16 ${FONTS.subheading} text-[72px] md:text-[108px] leading-[1.04] tracking-[-3.786px] ${theme === 'dark' ? 'text-white/90' : 'text-black'
               }`}>
               How does <br />DiagnoX work?
             </h2>
 
-            <ProcessSteps />
+            <div className="mt-8">
+              <ProcessSteps />
+            </div>
           </motion.div>
         </div>
       </div>

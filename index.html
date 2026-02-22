@@ -98,43 +98,81 @@
       ]
     }
   </script>
+  <!-- Port Detection & UI Safety Script -->
+  <script>
+    (function () {
+      const isWrongPort = window.location.port === '5501' || window.location.port === '5500';
+      if (isWrongPort) {
+        document.documentElement.style.overflow = 'hidden';
+        window.addEventListener('DOMContentLoaded', () => {
+          const overlay = document.createElement('div');
+          overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#0d0d0d;color:white;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:sans-serif;text-align:center;padding:20px;';
+          overlay.innerHTML = `
+            <div style="max-width:600px;background:#1a1a1a;padding:40px;border-radius:16px;border:1px solid #333;box-shadow:0 0 50px rgba(0,0,0,0.5);">
+              <h2 style="font-size:32px;margin-bottom:20px;color:#fff;">Wrong Server Detected</h2>
+              <p style="font-size:18px;line-height:1.6;color:#ccc;margin-bottom:30px;">
+                You are using <b>Live Server</b>, which cannot run this website properly. 
+                <br><br>
+                Please use the <b>Vite Development Server</b> instead:
+              </p>
+              <div style="background:#000;padding:15px;border-radius:8px;font-family:monospace;font-size:20px;color:#00ff00;margin-bottom:30px;">
+                npm run dev
+              </div>
+              <p style="font-size:16px;color:#888;">
+                Then open: <a href="http://localhost:3000" style="color:#3B82F6;text-decoration:none;">http://localhost:3000</a>
+              </p>
+            </div>
+          `;
+          document.body.appendChild(overlay);
+        });
+      }
+    })();
+  </script>
+  <style>
+    /* Hide SEO content by default when JS is available to prevent flash of text */
+    #root-static {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
   <div id="root">
-    <!-- Static Fallback Content for SEO Crawlers -->
-    <header>
-      <h1>AI-Driven Vehicle Health & Fleet Operations Intelligence</h1>
-      <p>DiagnoX is redefining vehicle health with AI-powered diagnostics that predict, prevent, and perfect
-        performance.</p>
-    </header>
-    <main>
-      <section id="static-features">
-        <h2>What DiagnoX Offers</h2>
-        <ul>
-          <li><strong>Vehicle Health Monitoring:</strong> Real-time diagnostics and warning alerts.</li>
-          <li><strong>Real-Time GPS Tracking:</strong> 24/7 vehicle location monitoring.</li>
-          <li><strong>Predictive Maintenance:</strong> Avoid breakdowns with AI-powered data patterns.</li>
-          <li><strong>SOS Response:</strong> Immediate alerts during impacts or emergencies.</li>
-          <li><strong>Driving Behavior Analytics:</strong> Insights on speeding, braking, and efficiency.</li>
-        </ul>
-      </section>
-      <section id="static-how-it-works">
-        <h2>How DiagnoX Works</h2>
-        <ol>
-          <li>Plug In the Dongle</li>
-          <li>Instant App Sync via Bluetooth</li>
-          <li>Cloud-Based AI Data Analysis</li>
-          <li>Get Your Vehicle Health Report</li>
-          <li>Stay Informed Anywhere, Anytime</li>
-        </ol>
-      </section>
-    </main>
+    <!-- Static Fallback Content for SEO Crawlers (Google/Bots) -->
+    <div id="root-static">
+      <header>
+        <h1>AI-Driven Vehicle Health & Fleet Operations Intelligence</h1>
+        <p>DiagnoX is redefining vehicle health with AI-powered diagnostics that predict, prevent, and perfect
+          performance.</p>
+      </header>
+      <main>
+        <section id="static-features">
+          <h2>What DiagnoX Offers</h2>
+          <ul>
+            <li><strong>Vehicle Health Monitoring:</strong> Real-time diagnostics and warning alerts.</li>
+            <li><strong>Real-Time GPS Tracking:</strong> 24/7 vehicle location monitoring.</li>
+            <li><strong>Predictive Maintenance:</strong> Avoid breakdowns with AI-powered data patterns.</li>
+            <li><strong>SOS Response:</strong> Immediate alerts during impacts or emergencies.</li>
+            <li><strong>Driving Behavior Analytics:</strong> Insights on speeding, braking, and efficiency.</li>
+          </ul>
+        </section>
+        <section id="static-how-it-works">
+          <h2>How DiagnoX Works</h2>
+          <ol>
+            <li>Plug In the Dongle</li>
+            <li>Instant App Sync via Bluetooth</li>
+            <li>Cloud-Based AI Data Analysis</li>
+            <li>Get Your Vehicle Health Report</li>
+            <li>Stay Informed Anywhere, Anytime</li>
+          </ol>
+        </section>
+      </main>
+    </div>
     <noscript>
       <p>For the full interactive experience of DiagnoX, please enable JavaScript.</p>
     </noscript>
   </div>
-  <script type="module" src="./src/main.tsx"></script>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
