@@ -11,10 +11,11 @@ export function AnimatedHeroText({ text, delay = 0 }: AnimatedHeroTextProps) {
   const { theme } = useTheme();
 
   return (
-    <motion.div
+    <motion.span
       className={`mb-0 ${FONTS.branding} text-[100px] sm:text-[110px] md:text-[120px] ${theme === 'dark' ? 'text-[#C0C0C0]' : 'text-gray-900'
         }`}
       style={{
+        display: 'inline-block',
         fontWeight: 400,
         lineHeight: '1.1',
         letterSpacing: '-2px',
@@ -25,6 +26,6 @@ export function AnimatedHeroText({ text, delay = 0 }: AnimatedHeroTextProps) {
       transition={{ duration: 0.8, delay, ease: 'easeOut' }}
     >
       {text}
-    </motion.div>
+    </motion.span>
   );
 }

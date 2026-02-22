@@ -141,7 +141,7 @@ function HeroSection() {
             <div className="relative h-[1186.01px] w-[1780.76px]">
               <img
                 src={imgMockupRemovebg1}
-                alt="DiagnoX Device"
+                alt="DiagnoX AI-powered vehicle diagnostic device showing mobile app interface with real-time health data"
                 className="absolute inset-0 pointer-events-none size-full max-w-none object-cover object-[50%_50%]"
               />
             </div>
@@ -185,6 +185,25 @@ function FeaturesSection() {
 
           <BentoGrid />
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function MissionSection() {
+  const { theme } = useTheme();
+  return (
+    <section className={`py-32 px-6 ${theme === 'dark' ? 'bg-[#000000]' : 'bg-white'}`}>
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className={`${FONTS.subheading} text-[44px] mb-8 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+          Our Mission: Revolutionizing Vehicle Health
+        </h2>
+        <p className={`${FONTS.body} text-lg leading-relaxed mb-6 ${theme === 'dark' ? 'text-white/70' : 'text-gray-600'}`}>
+          At DiagnoX, we believe that every vehicle owner deserves complete transparency and peace of mind. Our mission is to bridge the gap between complex automotive engineering and everyday drivers using the power of Artificial Intelligence.
+        </p>
+        <p className={`${FONTS.body} text-lg leading-relaxed ${theme === 'dark' ? 'text-white/70' : 'text-gray-600'}`}>
+          By transforming raw sensor data into meaningful stories, we help fleet managers and individual owners prevent breakdowns before they happen, optimize fuel efficiency, and extend the lifespan of their vehicles. We are committed to building a safer, more efficient future for the global transport industry through data-driven intelligence.
+        </p>
       </div>
     </section>
   );
@@ -250,9 +269,9 @@ function AboutUsSection() {
             transition={{ duration: 0.8 }}
             className="relative z-10"
           >
-            <h2 className={`mb-24 ${FONTS.subheading} text-[108px] leading-[1.04] tracking-[-3.786px] ${theme === 'dark' ? 'text-white/90' : 'text-black'
+            <h2 className={`mb-12 ${FONTS.subheading} text-[108px] leading-[1.04] tracking-[-3.786px] ${theme === 'dark' ? 'text-white/90' : 'text-black'
               }`}>
-              How does <br />DiagnoX work ?
+              How does <br />DiagnoX work?
             </h2>
 
             <ProcessSteps />
@@ -763,6 +782,7 @@ function AppContent() {
           <HeroSection />
           <FeaturesSection />
           <AboutUsSection />
+          <MissionSection />
           <WaitlistSection onSupportClick={() => setIsContactOpen(true)} onLearnMoreClick={() => setIsFAQOpen(true)} />
         </main>
       </div>
